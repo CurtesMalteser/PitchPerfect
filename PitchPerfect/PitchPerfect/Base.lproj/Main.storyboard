@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Record Sounds View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RecordSoundsViewController" customModule="PitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,13 +23,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGF-JK-uNx">
-                                <rect key="frame" x="153.5" y="533.5" width="107" height="20.5"/>
+                                <rect key="frame" x="153.5" y="541.5" width="107" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fee-qS-IU7">
-                                <rect key="frame" x="175" y="624.5" width="64" height="64"/>
+                                <rect key="frame" x="175" y="578" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Foq-rA-F8O"/>
                                     <constraint firstAttribute="width" constant="64" id="Seh-1U-tZ2"/>
@@ -37,7 +37,6 @@
                                 <state key="normal" image="Stop"/>
                                 <connections>
                                     <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qi6-Xo-AK6"/>
-                                    <segue destination="9Zo-IX-RHI" kind="show" id="bwe-mw-0ik"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -45,10 +44,10 @@
                         <constraints>
                             <constraint firstItem="am4-qw-BYJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6G9-IL-357"/>
                             <constraint firstItem="fee-qS-IU7" firstAttribute="centerX" secondItem="eGF-JK-uNx" secondAttribute="centerX" id="COj-xQ-aZx"/>
-                            <constraint firstItem="eGF-JK-uNx" firstAttribute="top" secondItem="am4-qw-BYJ" secondAttribute="bottom" constant="8" id="Pne-iW-ozJ"/>
+                            <constraint firstItem="eGF-JK-uNx" firstAttribute="top" secondItem="am4-qw-BYJ" secondAttribute="bottom" constant="16" id="Pne-iW-ozJ"/>
                             <constraint firstItem="am4-qw-BYJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aiw-Nt-GEI"/>
                             <constraint firstItem="eGF-JK-uNx" firstAttribute="centerX" secondItem="am4-qw-BYJ" secondAttribute="centerX" id="byF-Hd-gb8"/>
-                            <constraint firstItem="fee-qS-IU7" firstAttribute="top" secondItem="eGF-JK-uNx" secondAttribute="bottom" constant="70.5" id="yfb-44-4mt"/>
+                            <constraint firstItem="fee-qS-IU7" firstAttribute="top" secondItem="eGF-JK-uNx" secondAttribute="bottom" constant="16" id="yfb-44-4mt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -57,6 +56,7 @@
                         <outlet property="recordButton" destination="am4-qw-BYJ" id="VpG-Oj-cgl"/>
                         <outlet property="recordingLabel" destination="eGF-JK-uNx" id="uLl-vC-D06"/>
                         <outlet property="stopRecordingButton" destination="fee-qS-IU7" id="cdJ-ux-qkF"/>
+                        <segue destination="9Zo-IX-RHI" kind="show" identifier="stopRecordingSegue" id="zq3-DX-fTw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
