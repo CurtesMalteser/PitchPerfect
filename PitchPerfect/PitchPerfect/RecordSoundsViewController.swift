@@ -19,15 +19,18 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBOutlet weak var stopRecordingButton: UIButton!
     
+    // MARK: viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        stopRecordingButton.isEnabled = false
+        configureUI(false)
     }
+    
+    // MARK: Record audio
 
     @IBAction func recordAudio(_ sender: Any) {
-        recordingLabel.text = "Recording in Progress"
-        stopRecordingButton.isEnabled = true
-        recordButton.isEnabled = false
+        
+        configureUI(true)
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
@@ -45,15 +48,18 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         
     }
     
+    // MARK: Stop recording audio
+    
     @IBAction func stopRecording(_ sender: Any) {
-        stopRecordingButton.isEnabled = false
-        recordButton.isEnabled = true
-        recordingLabel.text = "Tap to Record"
+        
+        configureUI(false)
         
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
     }
+    
+    // MARK: AVAudioRecorderDelegate audioRecorderDidFinishRecording
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if(flag) {
@@ -63,6 +69,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
+    // MARK: Prepare for Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "stopRecordingSegue") {
             let playSoundsVC = segue.destination as! PlaySoundsViewController
@@ -70,6 +78,20 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             
             playSoundsVC.recordedAudioURL = recordedAudioURL
             
+        }
+    }
+    
+    // MARK: UI Functions
+
+    func configureUI(_ isRecording: Bool) {
+        if(isRecording) {
+            recordingLabel.text = "Recording in Progress"
+            stopRecordingButton.isEnabled = true
+            recordButton.isEnabled = false
+       } else {
+           stopRecordingButton.isEnabled = false
+           recordButton.isEnabled = true
+           recordingLabel.text = "Tap to Record"
         }
     }
 
